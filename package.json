@@ -1,0 +1,9 @@
+{
+  "name": "fruitlocker",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "express": "^4.13.3",
+    "mongoose": "^4.3.6"
+  }
+}
