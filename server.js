@@ -3,6 +3,8 @@ var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var hotelController = require('./controllers/hotel');
+var userController = require('./controllers/user');
+
 
 // Connect to the beerlocker MongoDB
 mongoose.connect('mongodb://localhost:27017/hotels');
@@ -22,6 +24,11 @@ var router = express.Router();
 router.route('/hotels')
   .post(hotelController.postHotels)
   .get(hotelController.getHotels);
+
+router.route('/users')
+.get(userController.getUsers)
+.post(userController.postUsers);
+
 
 // Create endpoint handlers for /hotels/:hotel_id
 router.route('/hotels/:hotel_id')
