@@ -63,6 +63,28 @@ hotelRoute.get(function(req, res) {
   });
 });
 
+
+hotelRoute.put(function(req,res){
+	Hotel.findById(req.params.hotel_id, function(err,hotel){
+		if(err) res.send(err);
+
+		hotel.quantity = req.body.quantity;
+
+		hotel.save(function(err){
+			if(err) res.send(err);
+
+			res.json(hotel);
+		})
+	})
+})
+
+hotelRoute.delete(function(req,res){
+	Hotel.findByIdAndRemove(req.params.hotel_id,function(err){
+		if(err) res.send(err);
+
+		res.json({message:"hotel removed"});
+	})
+})
 // Register all our routes with /api
 app.use('/api', router);
 
