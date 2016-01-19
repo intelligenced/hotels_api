@@ -4,7 +4,8 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var hotelController = require('./controllers/hotel');
 var userController = require('./controllers/user');
-
+var passport = require('passport');
+var authController = require('./controllers/auth');
 
 // Connect to the beerlocker MongoDB
 mongoose.connect('mongodb://localhost:27017/hotels');
@@ -22,19 +23,19 @@ var router = express.Router();
 
 // Create endpoint handlers for /hotels
 router.route('/hotels')
-  .post(hotelController.postHotels)
+  .post(authController.isAuthenticated, hotelController.postHotels)
   .get(hotelController.getHotels);
 
 router.route('/users')
-.get(userController.getUsers)
+.get(authController.isAuthenticated, userController.getUsers)
 .post(userController.postUsers);
 
 
 // Create endpoint handlers for /hotels/:hotel_id
 router.route('/hotels/:hotel_id')
-  .get(hotelController.getHotel)
-  .put(hotelController.putHotel)
-  .delete(hotelController.deleteHotel);
+  .get(authController.isAuthenticated,hotelController.getHotel)
+  .put(authController.isAuthenticated,hotelController.putHotel)
+  .delete(authController.isAuthenticated,hotelController.deleteHotel);
 
 // Register all our routes with /api
 app.use('/api', router);
