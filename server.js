@@ -8,7 +8,7 @@ var passport = require('passport');
 var authController = require('./controllers/auth');
 
 // Connect to the beerlocker MongoDB
-mongoose.connect('mongodb://localhost:27017/hotels');
+mongoose.connect('mongodb://localhost:27017/hotelier');
 
 // Create our Express application
 var app = express();
@@ -24,7 +24,7 @@ var router = express.Router();
 // Create endpoint handlers for /hotels
 router.route('/hotels')
   .post(authController.isAuthenticated, hotelController.postHotels)
-  .get(hotelController.getHotels);
+  .get(authController.isAuthenticated, hotelController.getHotels);
 
 router.route('/users')
 .get(authController.isAuthenticated, userController.getUsers)

@@ -1,5 +1,5 @@
 {
-  "name": "fruitlocker",
+  "name": "hotels",
   "main": "server.js",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
