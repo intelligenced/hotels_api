@@ -7,7 +7,7 @@ var userController = require('./controllers/user');
 var passport = require('passport');
 var authController = require('./controllers/auth');
 
-// Connect to the beerlocker MongoDB
+// Connect to the hotels MongoDB
 mongoose.connect('mongodb://localhost:27017/hotelier');
 
 // Create our Express application
